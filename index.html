@@ -7,6 +7,37 @@
     <title>Hari Naam Sang Kirtan Invitation</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.4.1/html2canvas.js"></script>
+    <style>
+        .container {
+            position: relative;
+            text-align: center;
+            color: white;
+        }
+
+        .name {
+            color: red;
+            font-family: 'Brush Script MT', cursive;
+            font-size: 11px;
+            font-weight: 100;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(30%, -125%);
+        }
+
+        .address {
+            color: red;
+            font-family: 'Brush Script MT', cursive;
+            font-size: 11px;
+            font-weight: 100;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(50%, -40%);
+        }
+    </style>
 </head>
 
 <body>
@@ -17,8 +48,39 @@
             Radhe Radhe
         </div>
         <div class="card-body">
-            <img src="./invitation_card.jpg" class="card-img-top" alt="..." id="image">
-            <button class="btn btn-primary mt-3"  onclick="downloadImage()">Download Image</button>
+            <div class="container">
+                <img src="./invitation_card.jpg" class="card-img-top" alt="..." id="image">
+                <div class="name">Karan Kumar Gorai</div>
+                <div class="address">At- Ganjia</div>
+            </div>
+            <button class="btn btn-success mt-3" data-bs-toggle="modal" data-bs-target="#myModal">Add Name</button>
+            <button class="btn btn-primary mt-3" onclick="downloadImage()">Download Image</button>
+        </div>
+    </div>
+
+
+    <!-- Modal -->
+    <div class="modal fade" id="myModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">Add Details</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="myForm">
+                        <div class="mb-3">
+                            <label for="name" class="form-label">Name</label>
+                            <input type="text" class="form-control" id="name">
+                        </div>
+                        <div class="mb-3">
+                            <label for="address" class="form-label">Address</label>
+                            <input type="text" class="form-control" id="address">
+                        </div>
+                        <button type="submit" class="btn btn-primary">Submit</button>
+                    </form>
+                </div>
+            </div>
         </div>
     </div>
 
@@ -26,6 +88,33 @@
         integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
         crossorigin="anonymous"></script>
     <script src="./app.js"></script>
+
+    <script>
+        $(document).ready(function () {
+            // Handle form submission
+            $("#myForm").submit(function (event) {
+                event.preventDefault(); // Prevent default form submission
+
+                // Get form values
+                var name = $("#name").val();
+                var address = $("#address").val();
+
+                // Display form values in console
+                console.log("Name: " + name);
+                console.log("Address: " + address);
+
+                // Optionally, you can clear the form fields after submission
+                $("#name").val("");
+                $("#address").val("");
+
+                // Close the modal
+                $("#myModal").modal('hide');
+
+                $(".name").html(name);
+                $(".address").html("At-" + address);
+            });
+        });
+    </script>
 </body>
 
 </html>
