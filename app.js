@@ -1,6 +1,6 @@
 function downloadImage() {
     // URL of the image you want to download
-    var imageUrl = "./radha_krishna.jpg";
+    var imageUrl = "./invitation_card.jpg";
 
      // Create a new anchor element
      var link = document.createElement('a');
