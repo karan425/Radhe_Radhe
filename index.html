@@ -116,7 +116,12 @@
              var url = window.location.href; 
             var components = URI.parse(url);
             var query = URI.parseQuery(components['query']);
-console.log(url);
+
+            console.log(components);
+
+            var customUrl = components['protocol']+'://'+components['hostname'];
+            console.log(customUrl);
+            
             if(jQuery.isEmptyObject(query)) {
                 $(".name").html('');
                 $(".address").html('')
