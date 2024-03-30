@@ -155,7 +155,7 @@
                 var modifiedAddress = address.split(' ').join('_');
 
                 var whatappApi = "https://api.whatsapp.com/send?text";
-                var shareUrl = whatappApi+"="+customUrl+"?"+"name="+modifiedName+"&address="+modifiedAddress;
+                var shareUrl = whatappApi+"="+customUrl+"?"+"name="+modifiedName+"&&address="+modifiedAddress;
                 console.log(shareUrl);
                 $('#shareCustomUrl').attr('href',shareUrl);
             });
