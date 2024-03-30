@@ -40,3 +40,27 @@ function downloadPamplate() {
      link.click();
      document.body.removeChild(link);
 }
+function goHome(){
+  var url = window.location.href; 
+  var components = URI.parse(url);
+  console.log(components);
+  var usreDetails = components['query'];
+  window.location.href = "./index.html?"+usreDetails;
+}
+
+function goGallery(){
+  var url = window.location.href; 
+  var components = URI.parse(url);
+  console.log(components);
+  var usreDetails = components['query'];
+  window.location.href = "./gallery.html?"+usreDetails;
+}
+
+function goVideos(){
+  var url = window.location.href; 
+  var components = URI.parse(url);
+  console.log(components);
+  var usreDetails = components['query'];
+  window.location.href = "./videos.html?"+usreDetails;
+}
+
