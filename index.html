@@ -120,7 +120,7 @@
             console.log(components);
 
             var customUrl = components['protocol']+'://'+components['hostname']+''+components['path'];
-            console.log(customUrl);
+            
             
             if(jQuery.isEmptyObject(query)) {
                 $(".name").html('');
@@ -151,6 +151,7 @@
 
                 $(".name").html(name);
                 $(".address").html("At-" + address);
+                console.log(customUrl);
             });
         });
     </script>
