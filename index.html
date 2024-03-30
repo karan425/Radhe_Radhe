@@ -153,11 +153,11 @@
                 $(".name").html(name);
                 $(".address").html("At-" + address);
 
-                var encodedName = encodeURIComponent(name);
-                var encodedAddress = encodeURIComponent(address);
+                var modifiedName = name.split(' ').join('%');
+                var modifiedAddress = address.split(' ').join('%');
 
                 var whatappApi = "https://api.whatsapp.com/send?text";
-                var shareUrl = whatappApi+"="+customUrl+"?"+"usersDetails=" + encodedName + "," + encodedAddress;
+                var shareUrl = whatappApi+"="+customUrl+"?"+"usersDetails=" + modifiedName + "," + modifiedAddress;
                 console.log(shareUrl);
                 $('#shareCustomUrl').attr('href',shareUrl);
             });
