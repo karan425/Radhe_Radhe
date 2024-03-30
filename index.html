@@ -151,10 +151,13 @@
                 $(".name").html(name);
                 $(".address").html("At-" + address);
 
-                var whatappApi = 'https://api.whatsapp.com/send?text';
-                var shareUrl = whatappApi+'='+customUrl+'?'+'name='+name+'&address='+address;
+                var modifiedName = name.split(' ').join('%');
+                var modifiedAddress = address.split(' ').join('%');
+
+                var whatappApi = "https://api.whatsapp.com/send?text";
+                var shareUrl = whatappApi+"="+customUrl+"?"+"name="+modifiedName+"&address="+modifiedAddress;
                 console.log(shareUrl);
-                 $('#shareCustomUrl').attr('href',shareUrl);
+                $('#shareCustomUrl').attr('href',shareUrl);
             });
         });
     </script>
