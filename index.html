@@ -112,7 +112,7 @@
              var url = window.location.href; 
             var components = URI.parse(url);
             var query = URI.parseQuery(components['query']);
-
+console.log(components);
             if(jQuery.isEmptyObject(query)) {
                 $(".name").html('');
                 $(".address").html('')
