@@ -14,7 +14,7 @@ function downloadImage() {
 }
 function downloadCard() {
     // URL of the image you want to download
-    var imageUrl = "./card.jpg";
+    var imageUrl = "./card2.jpg";
 
      // Create a new anchor element
      var link = document.createElement('a');
@@ -28,7 +28,7 @@ function downloadCard() {
 }
 function downloadPamplate() {
     // URL of the image you want to download
-    var imageUrl = "./pamplate.jpg";
+    var imageUrl = "./pamplate2.jpg";
 
      // Create a new anchor element
      var link = document.createElement('a');
