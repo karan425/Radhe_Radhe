@@ -151,7 +151,10 @@
 
                 $(".name").html(name);
                 $(".address").html("At-" + address);
-                console.log(customUrl);
+
+                var whatappApi = 'https://api.whatsapp.com/send?text';
+                var shareUrl = whatappApi+'='+customUrl+'?'+'name='+name+'&address='+address;
+                console.log(shareUrl);
             });
         });
     </script>
