@@ -153,8 +153,8 @@
                 $(".name").html(name);
                 $(".address").html("At-" + address);
 
-                var modifiedName = name.split(' ').join('%');
-                var modifiedAddress = address.split(' ').join('%');
+                var modifiedName = name.split(' ').join('_');
+                var modifiedAddress = address.split(' ').join('_');
 
                 var whatappApi = "https://api.whatsapp.com/send?text";
                 var shareUrl = whatappApi+"="+customUrl+"?"+"usersDetails=" + modifiedName + "," + modifiedAddress;
