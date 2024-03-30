@@ -108,15 +108,18 @@
 
     <script>
         $(document).ready(function () {
-
-            var url = window.location.href; 
+            
+             var url = window.location.href; 
             var components = URI.parse(url);
             var query = URI.parseQuery(components['query']);
-            console.log(query['param1']);
-            console.log(query['address']);
-            
-            $(".name").html(query['param1']);
-            $(".address").html("At-" + query['address']);
+
+            if(jQuery.isEmptyObject(query)) {
+                $(".name").html('');
+                $(".address").html('')
+            } else {
+                $(".name").html(query['param1']);
+                $(".address").html("At-" + query['address']);              
+            }
             
             // Handle form submission
             $("#myForm").submit(function (event) {
