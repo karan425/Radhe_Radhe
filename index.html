@@ -127,8 +127,10 @@
             } else {
                 var usersDetails = query['usersDetails'];
                 var parts = usersDetails.split(',');
-                $(".name").html(parts[0]);
-                $(".address").html("At-" + parts[1]);              
+                var modifiedName = parts[0].split('_').join(' ');
+                var modifiedAddress = parts[1].split('_').join('');
+                $(".name").html(modifiedName);
+                $(".address").html("At-" + modifiedAddress);              
             }
             
             // Handle form submission
