@@ -115,17 +115,20 @@
             var url = window.location.href; 
             var components = URI.parse(url);
             var query = URI.parseQuery(components['query']);
-
+           
             console.log(components);
+            console.log(usersDetails);
 
             var customUrl = components['protocol']+'://'+components['hostname']+''+components['path'];
-
+           
             if(jQuery.isEmptyObject(query)) {
                 $(".name").html('');
                 $(".address").html('')
             } else {
-                $(".name").html(query['name']);
-                $(".address").html("At-" + query['address']);              
+                var usersDetails = query['usersDetails'];
+                var parts = usersDetails.split(',');
+                $(".name").html(parts[0]);
+                $(".address").html("At-" + parts[1]);              
             }
             
             // Handle form submission
@@ -154,7 +157,7 @@
                 var encodedAddress = encodeURIComponent(address);
 
                 var whatappApi = "https://api.whatsapp.com/send?text";
-                var shareUrl = whatappApi+"="+customUrl+"?"+"name=" + encodedName + "&address=" + encodedAddress;
+                var shareUrl = whatappApi+"="+customUrl+"?"+"usersDetails=" + encodedName + "," + encodedAddress;
                 console.log(shareUrl);
                 $('#shareCustomUrl').attr('href',shareUrl);
             });
