@@ -119,6 +119,9 @@
             console.log(query['param1']);
             console.log(query['address']);
             
+            $(".name").html(query['param1']);
+            $(".address").html("At-" + query['address']);
+            
             // Handle form submission
             $("#myForm").submit(function (event) {
                 event.preventDefault(); // Prevent default form submission
