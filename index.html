@@ -119,7 +119,7 @@
 
             console.log(components);
 
-            var customUrl = components['protocol']+'://'+components['hostname']+'/'+components['path'];
+            var customUrl = components['protocol']+'://'+components['hostname']+''+components['path'];
             console.log(customUrl);
             
             if(jQuery.isEmptyObject(query)) {
