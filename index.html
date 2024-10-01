@@ -8,41 +8,78 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
-   
+
     <style>
+        body {
+            background-color: #f4f7f6;
+            font-family: 'Poppins', sans-serif;
+        }
+
         .container {
             position: relative;
             text-align: center;
             color: white;
+            margin-bottom: 30px;
         }
 
-       .name {
-            color: red;
+        .name, .address {
             font-family: 'Brush Script MT', cursive;
-            font-size: 14px;
+            font-size: 18px;
             font-weight: 100;
+            color: #c0392b;
             position: absolute;
+        }
+
+        .name {
             top: 50%;
             left: 50%;
-            transform: translate(30%, -135%);
+            transform: translate(30%, -140%);
         }
 
         .address {
-            color: red;
-            font-family: 'Brush Script MT', cursive;
-            font-size: 14px;
-            font-weight: 100;
-            position: absolute;
             top: 50%;
             left: 50%;
             transform: translate(60%, -30%);
         }
-         .feedback {
-            background-color : #51d845;
-            color: white;
-            padding: 22px 26px;
+
+        .btn-success, .btn-primary {
             border-radius: 50px;
-            border-color: #51d845;
+            padding: 12px 24px;
+        }
+
+        .card {
+            border: none;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            margin-bottom: 30px;
+        }
+
+        .card-header {
+            background-color: #f8c471;
+            font-size: 24px;
+            color: #2c3e50;
+            font-weight: bold;
+        }
+
+        .nav-link.active {
+            background-color: #27ae60;
+            color: white;
+        }
+
+        .nav-link {
+            color: #27ae60;
+        }
+
+        .nav-pills .nav-link:hover {
+            background-color: #2ecc71;
+            color: white;
+        }
+
+        .feedback {
+            background-color: #51d845;
+            color: white;
+            padding: 16px 24px;
+            border-radius: 50px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
         }
 
         #mybutton {
@@ -50,23 +87,41 @@
             bottom: 75px;
             right: 20px;
         }
+
+        .btn i {
+            margin-right: 5px;
+        }
+
+        .btn:hover {
+            background-color: #1abc9c;
+            color: white;
+        }
+        
+        /* Modal Customization */
+        .modal-header {
+            background-color: #f8c471;
+            color: #fff;
+        }
+
+        .modal-content {
+            border-radius: 15px;
+        }
     </style>
 </head>
 
 <body>
 
-
     <div class="card text-center">
         <div class="card-header">
             Radhe Radhe
         </div>
-         <div class="container">
+        <div class="container">
             <header class="d-flex justify-content-center py-3">
-              <ul class="nav nav-pills">
-                <li class="nav-item"><a onclick="goHome()" class="nav-link px-3 active" aria-current="page">Home</a></li>
-                <li class="nav-item"><a onclick="goGallery()" class="nav-link">Gallery</a></li>
-                <li class="nav-item"><a onclick="goVideos()" class="nav-link">Videos</a></li>
-              </ul>
+                <ul class="nav nav-pills">
+                    <li class="nav-item"><a onclick="goHome()" class="nav-link px-3 active" aria-current="page">Home</a></li>
+                    <li class="nav-item"><a onclick="goGallery()" class="nav-link">Gallery</a></li>
+                    <li class="nav-item"><a onclick="goVideos()" class="nav-link">Videos</a></li>
+                </ul>
             </header>
         </div>
         <div class="card-body">
@@ -75,17 +130,20 @@
                 <div class="name"></div>
                 <div class="address"></div>
             </div>
-            <button class="btn btn-success mt-3" data-bs-toggle="modal" data-bs-target="#myModal"><i class="bi bi-plus"></i> Add Name</button>
-<!--             <a href="https://api.whatsapp.com/send?text=Radhe Radhe" class="btn btn-success mt-3" id="shareCustomUrl"><i class="bi bi-whatsapp h3"></i></a> -->
-
+            <button class="btn btn-success mt-3" data-bs-toggle="modal" data-bs-target="#myModal">
+                <i class="bi bi-plus"></i> Add Name
+            </button>
         </div>
     </div>
-<div class="card text-center">
+
+    <div class="card text-center">
         <div class="card-body">
             <div class="container">
                 <img src="./card2.jpg" class="card-img-top" alt="..." id="image">
             </div>
-            <button class="btn btn-primary mt-3" onclick="downloadCard()"><i class="bi bi-cloud-arrow-down"></i> Download</button>
+            <button class="btn btn-primary mt-3" onclick="downloadCard()">
+                <i class="bi bi-cloud-arrow-down"></i> Download
+            </button>
         </div>
     </div>
 
@@ -94,7 +152,9 @@
             <div class="container">
                 <img src="./pamplate2.jpg" class="card-img-top" alt="..." id="image">
             </div>
-            <button class="btn btn-primary mt-3" onclick="downloadPamplate()" ><i class="bi bi-cloud-arrow-down"></i> Download</button>
+            <button class="btn btn-primary mt-3" onclick="downloadPamplate()">
+                <i class="bi bi-cloud-arrow-down"></i> Download
+            </button>
         </div>
     </div>
 
@@ -122,33 +182,28 @@
             </div>
         </div>
     </div>
-    
+
     <div id="mybutton">
-         <a href="https://api.whatsapp.com/send?text=Radhe Radhe" class="btn btn-success feedback" id="shareCustomUrl"><i class="bi bi-whatsapp h1"></i></a>
-<!--         <button class="feedback"><i class="bi bi-whatsapp h1"></i></button> -->
+        <a href="https://api.whatsapp.com/send?text=Radhe Radhe" class="btn btn-success feedback" id="shareCustomUrl">
+            <i class="bi bi-whatsapp h1"></i>
+        </a>
     </div>
-    
+
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
-        crossorigin="anonymous"></script>
+        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.4.1/html2canvas.js"></script>
-     <script src="https://cdnjs.cloudflare.com/ajax/libs/URI.js/1.17.0/URI.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/URI.js/1.17.0/URI.min.js"></script>
     <script src="./app.js"></script>
 
     <script>
         $(document).ready(function () {
-            
-            var url = window.location.href; 
+            var url = window.location.href;
             var components = URI.parse(url);
             var query = URI.parseQuery(components['query']);
-           
-            console.log(components);
-            console.log(usersDetails);
+            var customUrl = components['protocol'] + '://' + components['hostname'] + '' + components['path'];
 
-            var customUrl = components['protocol']+'://'+components['hostname']+''+components['path'];
-           
-            if(jQuery.isEmptyObject(query)) {
+            if ($.isEmptyObject(query)) {
                 $(".name").html('');
                 $(".address").html('')
             } else {
@@ -157,27 +212,13 @@
                 var modifiedName = parts[0].split('_').join(' ');
                 var modifiedAddress = parts[1].split('_').join('');
                 $(".name").html(modifiedName);
-                $(".address").html("At-" + modifiedAddress);              
+                $(".address").html("At-" + modifiedAddress);
             }
-            
-            // Handle form submission
-            $("#myForm").submit(function (event) {
-                event.preventDefault(); // Prevent default form submission
 
-                // Get form values
+            $("#myForm").submit(function (event) {
+                event.preventDefault();
                 var name = $("#name").val();
                 var address = $("#address").val();
-
-                // Display form values in console
-                console.log("Name: " + name);
-                console.log("Address: " + address);
-
-                // Optionally, you can clear the form fields after submission
-                $("#name").val("");
-                $("#address").val("");
-
-                // Close the modal
-                $("#myModal").modal('hide');
 
                 $(".name").html(name);
                 $(".address").html("At-" + address);
@@ -186,9 +227,8 @@
                 var modifiedAddress = address.split(' ').join('_');
 
                 var whatappApi = "https://api.whatsapp.com/send?text";
-                var shareUrl = whatappApi+"="+customUrl+"?"+"usersDetails=" + modifiedName + "," + modifiedAddress;
-                console.log(shareUrl);
-                $('#shareCustomUrl').attr('href',shareUrl);
+                var shareUrl = whatappApi + "=" + customUrl + "?" + "usersDetails=" + modifiedName + "," + modifiedAddress;
+                $('#shareCustomUrl').attr('href', shareUrl);
             });
         });
     </script>
