@@ -106,6 +106,44 @@
         .modal-content {
             border-radius: 15px;
         }
+        #mybutton {
+            position: fixed;
+            bottom: 75px;
+            right: 20px;
+            background-color: #28a745;
+            border-radius: 50px;
+            padding: 12px;
+            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            animation: float 3s ease-in-out infinite;
+        }
+
+        #mybutton:hover {
+            background-color: #1e7e34;
+            box-shadow: 0 12px 24px rgba(0, 0, 0, 0.2);
+            transform: translateY(-5px);
+        }
+
+        #mybutton .bi-whatsapp {
+            font-size: 2.5rem;
+            color: white;
+            transition: transform 0.3s ease;
+        }
+
+        #mybutton:hover .bi-whatsapp {
+            transform: rotate(360deg);
+        }
+
+        /* Floating animation for the button */
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-10px);
+            }
+        }
+
     </style>
 </head>
 
@@ -214,6 +252,26 @@
                 $(".name").html(modifiedName);
                 $(".address").html("At-" + modifiedAddress);
             }
+
+            // Show the button when the user scrolls down 100px from the top
+            window.onscroll = function() {
+                var mybutton = document.getElementById("mybutton");
+                if (document.body.scrollTop > 100 || document.documentElement.scrollTop > 100) {
+                    mybutton.style.opacity = "1";
+                    mybutton.style.visibility = "visible";
+                } else {
+                    mybutton.style.opacity = "0";
+                    mybutton.style.visibility = "hidden";
+                }
+            };
+
+            // Initially hide the button until the user scrolls
+            document.addEventListener("DOMContentLoaded", function() {
+                var mybutton = document.getElementById("mybutton");
+                mybutton.style.opacity = "0";
+                mybutton.style.visibility = "hidden";
+            });
+
 
             $("#myForm").submit(function (event) {
                 event.preventDefault();
