@@ -107,19 +107,19 @@
             border-radius: 15px;
         }
 
-        
+
         #mybutton {
             position: fixed;
-            bottom: 75px;
-            right: 20px;
+            bottom: 20px;  /* Adjusted from 75px to 20px */
+            right: 20px;   /* Same distance from the right */
             background-color: #28a745;
-            border-radius: 50px;
-            padding: 8px;
+            border-radius: 50%;
+            padding: 10px; /* Increased padding slightly for better spacing */
+            width: 45px;   /* Slightly smaller button */
+            height: 45px;  /* Matching height */
             box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
             transition: all 0.3s ease;
             animation: float 3s ease-in-out infinite;
-            width: 50px;
-            height: 50px;
         }
 
         #mybutton:hover {
@@ -129,7 +129,7 @@
         }
 
         #mybutton .bi-whatsapp {
-            font-size: 1.5rem; /* Reduced icon size */
+            font-size: 1.4rem; /* Adjusted icon size to fit smaller button */
             color: white;
             transition: transform 0.3s ease;
         }
@@ -147,6 +147,7 @@
                 transform: translateY(-5px);
             }
         }
+
 
 
     </style>
