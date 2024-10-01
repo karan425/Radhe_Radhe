@@ -279,20 +279,36 @@
             });
 
 
+            // Handle form submission
             $("#myForm").submit(function (event) {
-                event.preventDefault();
+                event.preventDefault(); // Prevent default form submission
+
+                // Get form values
                 var name = $("#name").val();
                 var address = $("#address").val();
 
+                // Display form values in console
+                console.log("Name: " + name);
+                console.log("Address: " + address);
+
+                // Optionally, you can clear the form fields after submission
+                $("#name").val("");
+                $("#address").val("");
+
+                // Update the content with submitted values
                 $(".name").html(name);
                 $(".address").html("At-" + address);
 
+                // Generate modified URL for sharing
                 var modifiedName = name.split(' ').join('_');
                 var modifiedAddress = address.split(' ').join('_');
-
                 var whatappApi = "https://api.whatsapp.com/send?text";
                 var shareUrl = whatappApi + "=" + customUrl + "?" + "usersDetails=" + modifiedName + "," + modifiedAddress;
+                console.log(shareUrl);
                 $('#shareCustomUrl').attr('href', shareUrl);
+
+                // Close the modal after submission
+                $("#myModal").modal('hide');
             });
         });
     </script>
