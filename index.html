@@ -22,25 +22,54 @@
             margin-bottom: 30px;
         }
 
+       /* Default styles for larger screens */
         .name, .address {
+            color: red;
             font-family: 'Brush Script MT', cursive;
-            font-size: 18px;
             font-weight: 100;
-            color: #c0392b;
             position: absolute;
+            text-align: center;
         }
 
+        /* Position and size for larger screens (desktops) */
         .name {
-            top: 50%;
+            font-size: 24px;
+            top: 45%;
             left: 50%;
-            transform: translate(30%, -140%);
+            transform: translate(-50%, -50%);
         }
 
         .address {
-            top: 50%;
+            font-size: 18px;
+            top: 55%;
             left: 50%;
-            transform: translate(60%, -30%);
+            transform: translate(-50%, -50%);
         }
+
+        /* Responsive styles for smaller screens (tablets) */
+        @media (max-width: 768px) {
+            .name {
+                font-size: 20px;
+                top: 40%;
+            }
+            .address {
+                font-size: 16px;
+                top: 50%;
+            }
+        }
+
+        /* Responsive styles for mobile screens (phones) */
+        @media (max-width: 480px) {
+            .name {
+                font-size: 16px;
+                top: 35%;
+            }
+            .address {
+                font-size: 14px;
+                top: 45%;
+            }
+        }
+
 
         .btn-success, .btn-primary {
             border-radius: 50px;
