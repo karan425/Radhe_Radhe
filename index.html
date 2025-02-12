@@ -227,10 +227,27 @@
         </div>
     </div>
 
-    <div id="mybutton">
+       <!-- WhatsApp Button and QR Code -->
+    <div id="whatsapp-buttons" style="position: fixed; bottom: 20px; right: 20px; display: flex; flex-direction: column; gap: 10px;">
         <a href="https://api.whatsapp.com/send?text=Radhe Radhe" class="btn btn-success feedback" id="shareCustomUrl">
             <i class="bi bi-whatsapp h1"></i>
         </a>
+
+        <!-- Generate QR Button -->
+        <button class="btn btn-primary" id="generateQR">
+            <i class="bi bi-qr-code"></i> Generate QR
+        </button>
+    </div>
+
+    <!-- QR Code Full-Screen Modal -->
+    <div id="qrModal" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.8); z-index: 1000; text-align: center;">
+        <div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); background: white; padding: 20px; border-radius: 10px; text-align: center;">
+            <h3>Scan the QR Code</h3>
+            <canvas id="qr-code"></canvas>
+            <br>
+            <button class="btn btn-info mt-2" id="downloadQR">Download QR</button>
+            <button class="btn btn-danger mt-2" id="closeQR">Cancel</button>
+        </div>
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
@@ -238,6 +255,8 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.4.1/html2canvas.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/URI.js/1.17.0/URI.min.js"></script>
+    <!-- Include QR Code Library -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrious/4.0.2/qrious.min.js"></script>
     <script src="./app.js"></script>
 
     <script>
@@ -246,6 +265,7 @@
             var components = URI.parse(url);
             var query = URI.parseQuery(components['query']);
             var customUrl = components['protocol'] + '://' + components['hostname'] + '' + components['path'];
+            var urlForQR = customUrl;
 
             if ($.isEmptyObject(query)) {
                 $(".name").html('');
@@ -304,11 +324,37 @@
                 var modifiedAddress = address.split(' ').join('_');
                 var whatappApi = "https://api.whatsapp.com/send?text";
                 var shareUrl = whatappApi + "=" + customUrl + "?" + "usersDetails=" + modifiedName + "," + modifiedAddress;
+                urlForQR = customUrl + "?" + "usersDetails=" + modifiedName + "," + modifiedAddress;
                 console.log(shareUrl);
                 $('#shareCustomUrl').attr('href', shareUrl);
 
                 // Close the modal after submission
                 $("#myModal").modal('hide');
+            });
+
+            // Generate QR Code and Show Modal
+            $("#generateQR").click(function () {
+                var qrModal = $("#qrModal");
+                var qr = new QRious({
+                    element: document.getElementById("qr-code"),
+                    value: urlForQR,
+                    size: 300
+                });
+                qrModal.show();
+            });
+
+            // Download QR Code
+            $("#downloadQR").click(function () {
+                var canvas = document.getElementById("qr-code");
+                var link = document.createElement("a");
+                link.href = canvas.toDataURL("image/png");
+                link.download = "whatsapp_group_qr.png";
+                link.click();
+            });
+
+            // Close QR Code Modal
+            $("#closeQR").click(function () {
+                $("#qrModal").hide();
             });
         });
     </script>
